@@ -1,0 +1,127 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="E-Medicines Services.master.cs" Inherits="E_Medicines_Services" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="Fonts/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<link href="CSS/Style.css" rel="stylesheet" />
+<script type="text/javascript" src="JS/Script.js"></script>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <center>
+        <table id="Hdr" border="0">
+            <tr>
+                <td width="5%" align="center" valign="middle">
+                    <asp:Image ID="imgLogo" runat="server" ImageUrl="~/Images/logo1.png" Width="100%" Height="60" />
+                </td>
+                <td valign="top" align="center" width="50%">
+                    <h1 id="Title">ABC Medical Store</h1>
+                    <marquee id="HeadLine" scrollamount="2.5">"ABC Medical Store" provides "E-Medicines Services". Customer can buy any kinds of medicines from anywhere and any time.</marquee>
+                </td>
+                <td width="25%">
+                    <table>
+                        <tr> time
+                            <td>
+                                <asp:Image ID="icnCal" runat="server" ImageUrl="~/Images/cal.png" Height="60" Width="100" />
+                            </td>
+                            <td>
+                                <asp:Label ID="Date" runat="server" CssClass="DtTime"></asp:Label>  
+                            </td>
+                        </tr>
+                    </table>
+                    <%--<asp:Label ID="lblDate" runat="server" Text="DATE:" CssClass="LblDtTime"></asp:Label>--%>
+                </td>
+                <td width="20%">
+                    <table> time and 
+                        <tr>
+                            <td>
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/clock1.jpg" Height="60" Width="100" />
+                            </td>
+                            <td>
+                                  <asp:UpdatePanel ID="tipmeUpdt" runat="server">
+                                    <Triggers>
+                                     <asp:AsyncPostBackTrigger ControlID="timrDate" EventName="Tick" />
+                                   </Triggers>
+                                   <ContentTemplate>
+                                       <asp:Label ID="Timer" runat="server" CssClass="DtTime"></asp:Label>
+                                  </ContentTemplate>
+                               </asp:UpdatePanel>
+                          </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td valign="middle" align="center" colspan="3">
+                    <asp:Menu ID="mnu" runat="server" BackColor="Black" BorderColor="#CC3300" DynamicHorizontalOffset="2" DynamicVerticalOffset="1" Font-Bold="True" Font-Italic="False" Font-Names="Times New Roman" Font-Size="1em" ForeColor="Aqua" Orientation="Horizontal" StaticSubMenuIndent="10px" Width="100%" OnMenuItemClick="mnu_MenuItemClick">
+                        <DynamicHoverStyle BackColor="Yellow" ForeColor="Red" />
+                        <DynamicMenuItemStyle BackColor="Black" ForeColor="Aqua" VerticalPadding="10px" />
+                        <DynamicMenuStyle BackColor="Black" VerticalPadding="5px" />
+                        <DynamicSelectedStyle BackColor="Aqua" ForeColor="Black" />
+                        <Items>
+                            <asp:MenuItem Text="HOME" Value="HOME" NavigateUrl="Default.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="USERS" Value="USERS">
+                                <asp:MenuItem Text="SIGNUP" Value="SIGNUP" NavigateUrl="Signup.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="SIGNIN" Value="SIGNIN" NavigateUrl="Signin.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="SIGNOUT" Value="SIGNOUT"></asp:MenuItem>
+                                <asp:MenuItem Text="CART" Value="CART" NavigateUrl="Cart.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="PROFILE" Value="PROFILE" NavigateUrl="UserProfile.aspx"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="MANAGEMENT" Value="MANAGEMENT">
+                                <asp:MenuItem Text="MEDICINES" Value="MEDICINES" NavigateUrl="Medicines.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="ORDERS" Value="ORDERS" NavigateUrl="Orders.aspx"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="ABOUTUS" Value="ABOUTUS" NavigateUrl="AboutUs.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="CONTACTUS" Value="CONTACTUS" NavigateUrl="ContactUs.aspx"></asp:MenuItem>
+                        </Items>
+                        <StaticHoverStyle BackColor="Yellow" ForeColor="Red" />
+                        <StaticMenuItemStyle HorizontalPadding="10px" />
+                        <StaticSelectedStyle BackColor="Aqua" ForeColor="Black" HorizontalPadding="10px" ItemSpacing="10px" />
+                    </asp:Menu>
+                </td>
+                <td align="center">
+                    <asp:Label ID="lblUser" runat="server" CssClass="LblUsr"></asp:Label>
+                </td>
+            </tr>
+        </table>
+        <table border="0" class="Tbl-Outer">
+            <tr width="100%">
+                <td width="100%" align="center">
+                     <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+        <table id="Ftr" width="100%" border="0">
+            <tr>
+                <td align="center">
+                    <table cellspacing="15">
+                            <tr>
+                                <td>
+                                     <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/fb.png" Height="40" Width="40" />
+                                </td>
+                                <td>
+                                    <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/ig.jpg" Height="40" Width="40" />
+                                </td>
+                                <td>
+                                   <asp:Image ID="Image4" runat="server" ImageUrl="~/Images/wap.jpg" Height="40" Width="40" />
+                                </td>
+                             </tr>
+                            </table>
+                    </td>  
+            </tr>
+            <tr>
+                <td align="center">
+                    @copyright ABC Medical Store 
+                </td>
+            </tr>
+        </table>
+    </center>
+        <asp:Timer ID="timrDate" runat="server" OnTick="Timer_Tick" Interval="1000"></asp:Timer>
+    </form>
+</body>
+</html>
